@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.join(BASE_DIR, 'med_list')
 
 
 # Quick-start development settings - unsuitable for production
@@ -119,3 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SOURCE_URL = 'https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2'
+DATA_DIR = os.path.join(PROJECT_DIR, 'data')
+NEW_DATA = os.path.join(DATA_DIR, 'current.data')
+OLD_DATA = os.path.join(DATA_DIR, 'previous.data')
+
+# line from which starts list of meds
+START_LINE_NUMBER = 72
+# line content from which list of meds terminated
+TERMINATE_LINE = 'Промежуточные версии статьи: РСП-1, РСП-2, РСП-3;'
