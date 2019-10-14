@@ -2,13 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
     help = 'Download and process the source'
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **kwargs):
         response = requests.get(settings.SOURCE_URL)
 
         if response.status_code != 200:
