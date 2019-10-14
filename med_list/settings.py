@@ -10,11 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import configparser
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.join(BASE_DIR, 'med_list')
+LOCAL_INI_FILE = os.path.join('/etc/druglist/druglist.ini')
 
 
 # Quick-start development settings - unsuitable for production
@@ -121,6 +123,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+TELEGRAM_TOKEN = 'telegram_token'
+SECRET = {
+    TELEGRAM_TOKEN: '',
+}
+
 SOURCE_URL = 'https://encyclopatia.ru/wiki/%D0%A0%D0%B0%D1%81%D1%81%D1%82%D1%80%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D1%80%D0%B5%D0%BF%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2'
 DATA_DIR = os.path.join(PROJECT_DIR, 'data')
 NEW_DATA = os.path.join(DATA_DIR, 'current.data')
@@ -130,3 +137,17 @@ OLD_DATA = os.path.join(DATA_DIR, 'previous.data')
 START_LINE_NUMBER = 72
 # line content from which list of meds terminated
 TERMINATE_LINE = 'Промежуточные версии статьи: РСП-1, РСП-2, РСП-3;'
+
+
+##
+# Local settings of the server (from the .ini config).
+if os.path.isfile(LOCAL_INI_FILE):
+    config = configparser.ConfigParser()
+    config.optionxform = lambda option: option
+    config.read(LOCAL_INI_FILE)
+
+    for sec in config.sections():
+        v = {}
+        for key in config[sec]:
+            v[key] = config[sec][key]
+        globals()[sec] = v
