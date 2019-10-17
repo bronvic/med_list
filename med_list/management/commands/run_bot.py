@@ -34,7 +34,7 @@ class Command(BaseCommand):
     help = 'Run telegram bot'
 
     def handle(self, *args, **kwargs):
-        updater = Updater(token=settings.SECRET[settings.TELEGRAM_TOKEN], use_context=True)
+        updater = Updater(token=settings.TELEGRAM_TOKEN, use_context=True)
         dispatcher = updater.dispatcher
 
         start_handler = CommandHandler('start', start)
