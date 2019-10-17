@@ -5,8 +5,11 @@ class Description(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        short_desc = self.description[:20]
-        return f'{short_desc}...'
+        return f'{self.pk}'
+
+    def short_description(self):
+        short_desc = self.description[:100]
+        return f'{short_desc}...' if len(self.description) > 100 else f'{short_desc}'
 
 
 class Drug(models.Model):

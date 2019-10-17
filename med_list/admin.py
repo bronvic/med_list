@@ -2,13 +2,16 @@ from django.contrib import admin
 from med_list.models import Drug, Description
 
 
+@admin.register(Drug)
 class DrugAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'description',)
+    search_fields = ['name', 'description__id']
 
 
+@admin.register(Description)
 class DescriptionAdmin(admin.ModelAdmin):
-    pass
+    fields = ('id', 'description',)
+    readonly_fields = ('id',)
 
-
-admin.site.register(Drug, DrugAdmin)
-admin.site.register(Description, DescriptionAdmin)
+    list_display = ('id', 'short_description',)
+    search_fields = ['id']
