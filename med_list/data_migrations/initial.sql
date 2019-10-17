@@ -1482,3 +1482,5 @@ INSERT INTO med_list_drug (id, name, description_id) VALUES
 (620, 'Эхинацея пурпурная', 170),
 (621, 'Echinacea purpurea', 170);
 
+ALTER SEQUENCE med_list_drug_id_seq RESTART WITH 622;
+ALTER SEQUENCE med_list_description_id_seq RESTART WITH 171;
