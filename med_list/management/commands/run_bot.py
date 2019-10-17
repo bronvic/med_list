@@ -1,5 +1,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram.ext.dispatcher import run_async
+from telegram import ParseMode
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -27,7 +28,7 @@ def find_drug(update, context):
     except Drug.DoesNotExist:
         text = f'По вашему запросу "{update.message.text}" ничего не найдено'
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text, parse_mode=ParseMode.HTML)
 
 
 class Command(BaseCommand):
