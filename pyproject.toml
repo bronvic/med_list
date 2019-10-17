@@ -10,6 +10,7 @@ django = "^2.2"
 requests = "^2.22"
 bs4 = "^0.0.1"
 python-telegram-bot = "^12.2"
+psycopg2 = "^2.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

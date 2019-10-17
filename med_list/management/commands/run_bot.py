@@ -1,4 +1,5 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext.dispatcher import run_async
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -10,6 +11,7 @@ def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Введите название препарата, чтобы узнать работает ли он')
 
 
+@run_async
 def find_drug(update, context):
     try:
         drug = Drug.objects.get(name=update.message.text)

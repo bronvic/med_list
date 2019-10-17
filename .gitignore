@@ -103,3 +103,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+med_list/data/*
