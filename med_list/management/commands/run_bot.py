@@ -28,7 +28,7 @@ def find_drug(update, context):
     except Drug.DoesNotExist:
         text = f'По вашему запросу "{update.message.text}" ничего не найдено'
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text, parse_mode=ParseMode.HTML)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True)
 
 
 class Command(BaseCommand):
