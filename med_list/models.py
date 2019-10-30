@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
@@ -13,8 +14,8 @@ class Description(models.Model):
 
 
 class Drug(models.Model):
-    name = models.CharField(max_length=256, unique=True)
+    names = ArrayField(models.CharField(max_length=255, unique=True), null=True, blank=True)
     description = models.ForeignKey('Description', on_delete=models.PROTECT)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.names}'
