@@ -15,12 +15,16 @@ def start(update, context):
 @run_async
 def find_drug(update, context):
     try:
-        drug = Drug.objects.get(name=update.message.text)
-        analogs = Drug.objects.exclude(id=drug.id).filter(description=drug.description).values_list('name', flat=True)
+        drug = Drug.objects.get(names__contains=[update.message.text])
+        analogs = Drug.objects.exclude(id=drug.id).filter(description=drug.description)
 
-        text_parts = [f'Название: {drug.name}']
+        text_parts = [f'Название: {update.message.text}']
         if analogs:
-            analogs_string = ', '.join(analogs)
+            analog_strings = []
+            for drug in analogs:
+                analog_strings.append('/'.join(drug.names))
+
+            analogs_string = ', '.join(analog_strings)
             text_parts.append(f'Аналоги: {analogs_string}')
         text_parts.append(f'Описание: {drug.description.description}')
 
