@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 
 med_list/data/*
+static

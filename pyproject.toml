@@ -5,7 +5,7 @@ description = ""
 authors = ["Voronwe <fanafet@yandex.ru>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 django = "^2.2"
 requests = "^2.22"
 bs4 = "^0.0.1"
