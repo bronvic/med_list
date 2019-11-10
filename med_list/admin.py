@@ -8,7 +8,10 @@ class DrugForm(forms.ModelForm):
     analogs = forms.ModelMultipleChoiceField(queryset=Drug.objects.all(), required=False, disabled=True)
 
     def __init__(self, *args, **kwargs):
-        self.base_fields['analogs'].queryset = Drug.objects.filter(description_id=kwargs['instance'].description_id).exclude(pk=kwargs['instance'].id)
+        if kwargs.get('instance'):
+            self.base_fields['analogs'].queryset = Drug.objects.filter(description_id=kwargs['instance'].description_id).exclude(pk=kwargs['instance'].id)
+        else:
+            self.base_fields['analogs'].queryset = Drug.objects.none()
 
         super().__init__(*args, **kwargs)
 
